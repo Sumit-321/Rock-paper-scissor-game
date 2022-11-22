@@ -40,15 +40,6 @@
         setInterval(show_date_time, 1000);
     </script>
 
-    <label id="player_choice" for="player_choice" style="color:rgba(0, 0, 0, 0.801);font-size:25px;"><b>Do you want to play this game ?</b></label>
-    <br>
-    <input type="radio" id="yes" name="playing_choice" value="Yes" style="border-style:none;margin-left:40px;font-size:25px;"/><label for="yes" style="font-size: 25px;">Yes</label>
-    <input type="radio" id="no" name="playing_choice" value="No" style="border-style:none;margin-left:80px;font-size:25px;"/><label for="no" style="font-size: 25px;">No</label>
-    <br><br>
-    <button type="button" style="background:#3630a3;color:white; border-style:none;margin-left:75px;font-size:25px;" onclick="user_playing_choice()"> Submit </button>
-
-    <div id="after_playing_choice"></div>
-
     <form action="game_choice" method="post">
     <div id="playing_game" class="container" style="display: none;">
         <audio hidden loop="true" autoplay="true" controls>
@@ -82,23 +73,13 @@
           audio.play(); }
 
         function user_playing_choice() {
-            var element = document.getElementsByName('playing_choice');
-            for(i = 0; i < element.length; i++)
-            {
-                if(element[i].checked && element[i].value== "Yes")
-                {document.getElementById("playing_game").style.display = "block";
+                let playing= "{{playing}}";
+                if(playing== "1")
+                {document.getElementById("playing_game").style.display = "block";}
+                else
+                {document.getElementById("playing_game").style.display = "none";}	}
 
-                document.getElementById('after_playing_choice').innerHTML= "<br><b> Nice choice ! Please carry on. <b>";
-                document.getElementById("after_playing_choice").style.color = "green";
-                document.getElementById("after_playing_choice").style.fontSize = "25px";}
-
-                else if(element[i].checked && element[i].value== "No")
-                {document.getElementById("playing_game").style.display = "none";
-
-                document.getElementById('after_playing_choice').innerHTML= "<br><b> Okay No issue. Next time please !<b>";
-                document.getElementById("after_playing_choice").style.color = "green";
-                document.getElementById("after_playing_choice").style.fontSize = "25px";}
-            }  }
+        user_playing_choice()
     </script>
 </body>
 </html>
